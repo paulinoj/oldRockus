@@ -3,101 +3,119 @@
 <!-- doing so might prevent your code from being properly tested -->
 <!DOCTYPE HTML>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>JSONParty</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  </head>
-  <body>
-    <div id="container">
-      <div>HELLO1</div>
-      <div>
-        <audio id = "audioPlayer"  controls/><br><br><br>
-      </div>
-      <div>HELLO2</div>
-        <audio id = "audioPlayer2" controls/>
-      </div>
-      <div>HELLO3</div>
-      <div>
-        <audio id = "audioPlayer3" controls/><br><br><br>
-      </div>
-      <div>HELLO4</div>
-      <div>
-        <audio id = "audioPlayer4" controls/>
-      </div>
-    </div>
+</head>
 
-    <select>
-      <option value="rock80s">80s Rock</option>
-      <option value="classical">Classical</option>
+<body>
+    <div id="container">
+        <div>HELLO1</div>
+        <div>
+            <audio id="audioPlayer" controls/>
+            <br>
+            <br>
+            <br>
+        </div>
+        <div>HELLO2</div>
+        <audio id="audioPlayer2" controls/>
+    </div>
+    <div>HELLO3</div>
+    <div>
+        <audio id="audioPlayer3" controls/>
+        <br>
+        <br>
+        <br>
+    </div>
+    <div>HELLO4</div>
+    <div>
+        <audio id="audioPlayer4" controls/>
+    </div>
+    </div>
+    <select id="genre">
+        <option value="rock80s">80s Rock</option>
+        <option value="classical">Classical</option>
     </select>
     <button id="begin">BEGIN</button>
-
     <div>
-      <ul class='answers'>
-      </ul>
+        <ul class='answers'>
+        </ul>
     </div>
+    <form action="#" id="send" method="post">
+        <input type="text" name="message" id="message" />
+        <input type="submit" name="submit" class="submit" />
+    </form>
+</body>
+<script>
+$(document).ready(function() {
 
-  <form action="#" id="send" method="post">
-    <input type="text" name="message" id="message"/>
-    <input type="submit" name="submit" class="submit"/>
-  </form>
+    $("#begin").on('click', function() {
+        if ($( "#genre option:selected" ).text() == "Classical") {
+          alert("CLASSICAL CHOSEN");
+        }
+      });
 
-
-
-  </body>
-  <script>
-    $(document).ready(function() {
-
-      $("#send").submit(function(e) {
-         e.preventDefault();
+    $("#send").submit(function(e) {
+        e.preventDefault();
         var result = $('#message').val();
-        var message = {"text": result};         
-         $.ajax({
+        var message = {
+            "text": result
+        };
+        $.ajax({
             type: 'POST',
             url: server,
             data: JSON.stringify(message),
             contentType: 'application/json',
-            success: function(json){
-              console.log(json);
-              if (json === "Right") {
+            success: function(json) {
+                    console.log(json);
+                    if (json === "Right") {
 
-                $('.answers').append('<li>' + json + '</li>');
-              }
-            }
-            // , complete: function(){
-            //   app.stopSpinner();
-            // }
-          });
-      });
+                        $('.answers').append('<li>' + json + '</li>');
+                    }
+                }
+                // , complete: function(){
+                //   app.stopSpinner();
+                // }
+        });
+    });
 
-      var playAudio = function(player, songObject) {
+    var playAudio = function(player, songObject) {
         console.log("Do we get here");
         player = '#' + player;
         $(player).attr('src', songObject.title);
         $(player).prop('currentTime', songObject.start);
         $(player).prop('volume', songObject.volume);
         $(player).trigger('play');
-      };
+    };
 
-      
 
-    var song1 = {title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/04+One+In+A+Million.mp3',
-           artist: '',
-           start: 30,
-           volume: 0.4};
-  var song2 = {title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/03+Age+Ain%27t+Nothing+But+A+Number.mp3',
-           artist: '',
-           start: 30,
-           volume: 0.4};
-  var song3 = {title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/05+Hot+Like+Fire.mp3',
-           artist: '',
-           start: 30,
-           volume: 0.4};
-  var song4 = {title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/06+If+Your+Girl+Only+Knew.mp3',
-           artist: '',
-           start: 30,
-           volume: 0.4};
+
+    var song1 = {
+        title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/04+One+In+A+Million.mp3',
+        artist: '',
+        start: 30,
+        volume: 0.4
+    };
+    var song2 = {
+        title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/03+Age+Ain%27t+Nothing+But+A+Number.mp3',
+        artist: '',
+        start: 30,
+        volume: 0.4
+    };
+    var song3 = {
+        title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/05+Hot+Like+Fire.mp3',
+        artist: '',
+        start: 30,
+        volume: 0.4
+    };
+    var song4 = {
+        title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/06+If+Your+Girl+Only+Knew.mp3',
+        artist: '',
+        start: 30,
+        volume: 0.4
+    };
 
 
     // var song1 = {title: 'music/ABBA - Dancing Queen.mp3',
@@ -125,6 +143,7 @@
     var server = "http://127.0.0.1:3000/";
 
 
-    });   
-  </script>
+});
+</script>
+
 </html>
