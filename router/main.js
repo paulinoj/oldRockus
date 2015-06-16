@@ -9,7 +9,7 @@ var seventiesDisco = [
         realTitle: 'Dancing Queen',
         artist: '',
         start: 30,
-        volume: 0.4
+        volume: 0.3
     },
 
     {
@@ -33,19 +33,13 @@ var seventiesDisco = [
         start: 30,
         volume: 0.4
     },
-    // {
-    //     title: 'https://s3-us-west-1.amazonaws.com/mvpproject/Gloria+Gaynor+-+I+Will+Survive.mp3.mp3',
-    //     realTitle: 'I will Survive',
-    //     artist: '',
-    //     start: 30,
-    //     volume: 0.4
-    // }
+
     {
-        title: 'https://s3-us-west-1.amazonaws.com/mvpproject/TheLookOfLove.mp3',
-        realTitle: 'I will Survive',
+        title: 'https://s3-us-west-1.amazonaws.com/mvpproject/Donna+Summer+-+Macarthur+Park.mp3',
+        realTitle: 'MacArthur Park',
         artist: '',
         start: 30,
-        volume: 0.4
+        volume: 0.6
     }
 
     ];
