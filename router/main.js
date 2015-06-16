@@ -2,43 +2,8 @@ module.exports=function(app)
 {
 
 var bodyParser = require('body-parser');
-// var classicalSongs = {
-//     song1: {
-//         title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/04+One+In+A+Million.mp3',
-//         artist: '',
-//         start: 30,
-//         volume: 0.4
-//     },
-//     song2: {
-//         title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/03+Age+Ain%27t+Nothing+But+A+Number.mp3',
-//         artist: '',
-//         start: 30,
-//         volume: 0.4
-//     },
-//     song3: {
-//         title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/05+Hot+Like+Fire.mp3',
-//         artist: '',
-//         start: 30,
-//         volume: 0.4
-//     },
-//     song4: {
-//         title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/06+If+Your+Girl+Only+Knew.mp3',
-//         artist: '',
-//         start: 30,
-//         volume: 0.4
-//     }};
 
-
-
-var classicalSongs = [
-    {
-        title: 'https://s3-us-west-1.amazonaws.com/mvpproject/TheLookOfLove.mp3',
-        realTitle: 'The Look Of Love',
-        artist: '',
-        start: 30,
-        volume: 0.4
-    },
-
+var seventiesDisco = [
     {
         title: 'https://s3-us-west-1.amazonaws.com/mvpproject/ABBA+-+Dancing+Queen.mp3',
         realTitle: 'Dancing Queen',
@@ -46,20 +11,86 @@ var classicalSongs = [
         start: 30,
         volume: 0.4
     },
+
     {
-        title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/05+Hot+Like+Fire.mp3',
-        realTitle: 'Karma Chameleon',
+        title: 'https://s3-us-west-1.amazonaws.com/mvpproject/Earth+Wind+and+Fire+-+Let%27s+Groove+Tonight.mp3',
+        realTitle: "Let's Groove",
         artist: '',
         start: 30,
         volume: 0.4
     },
     {
-        title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/06+If+Your+Girl+Only+Knew.mp3',
-        realTitle: 'Xanadu',
+        title: 'https://s3-us-west-1.amazonaws.com/mvpproject/Fly%2C+Robin+Fly+-+Silver+Convention.mp3',
+        realTitle: 'Fly Robin Fly',
         artist: '',
         start: 30,
         volume: 0.4
-    }];
+    },
+    {
+        title: 'https://s3-us-west-1.amazonaws.com/mvpproject/van+mccoy+-+the+hustle.mp3',
+        realTitle: 'The Hustle',
+        artist: '',
+        start: 30,
+        volume: 0.4
+    },
+    // {
+    //     title: 'https://s3-us-west-1.amazonaws.com/mvpproject/Gloria+Gaynor+-+I+Will+Survive.mp3.mp3',
+    //     realTitle: 'I will Survive',
+    //     artist: '',
+    //     start: 30,
+    //     volume: 0.4
+    // }
+    {
+        title: 'https://s3-us-west-1.amazonaws.com/mvpproject/TheLookOfLove.mp3',
+        realTitle: 'I will Survive',
+        artist: '',
+        start: 30,
+        volume: 0.4
+    }
+
+    ];
+
+
+var eightiesPop = [
+    {
+        title: 'https://s3-us-west-1.amazonaws.com/mvpproject/TheLookOfLove.mp3',
+        realTitle: 'The Look Of Love',
+        artist: '',
+        start: 30,
+        volume: 1.0
+    },
+
+    {
+        title: 'https://s3-us-west-1.amazonaws.com/mvpproject/Rick+Springfield+-+Jessie%27s+Girl.mp3',
+        realTitle: "Jessie's Girl",
+        artist: '',
+        start: 30,
+        volume: 0.3
+    },
+    {
+        title: 'https://s3-us-west-1.amazonaws.com/mvpproject/Jackson+Browne+-+Somebody%27s+Baby.mp3',
+        realTitle: "Somebody's Baby",
+        artist: '',
+        start: 30,
+        volume: 0.4
+    },
+    {
+        title: 'https://s3-us-west-1.amazonaws.com/mvpproject/GoGo%27s+-+we+got+the+beat.mp3',
+        realTitle: 'We Got The Beat',
+        artist: '',
+        start: 30,
+        volume: 0.35
+    },
+    {
+        title: 'https://s3-us-west-1.amazonaws.com/mvpproject/Cyndi+Lauper+-+Girls+Just+Wanna+Have+Fun.Mp3',
+        realTitle: 'Girls Just Wanna Have Fun',
+        artist: '',
+        start: 30,
+        volume: 0.4
+    }
+    ];
+
+
 
 var musicList = [];
 var songResponse;
@@ -72,12 +103,12 @@ res.render('index.html');
 
 app.post('/musicchoice', function(req, res) {
   console.log(req.body);
-  if (req.body.text === "classical") {
-    songResponse = classicalSongs;
+  if (req.body.text === "seventiesDisco") {
+    songResponse = seventiesDisco;
   }
   else
   {
-    songResponse = eightiesSongs;
+    songResponse = eightiesPop;
   }
 
   for (var i = 0; i < songResponse.length; i++) {

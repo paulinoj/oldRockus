@@ -6,10 +6,10 @@
     <title>ROCKUS</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
      <style>
-        audio { 
+ /*       audio { 
            display:none;
         }
-
+*/
         div {
           background-color: black;
         }
@@ -33,19 +33,24 @@
             <audio id="audioPlayer" controls/>
         </div>
         <div>HELLO2</div>
-        <audio id="audioPlayer2" controls/>
-    </div>
-    <div>HELLO3</div>
-    <div>
-        <audio id="audioPlayer3" controls/>
-    </div>
-    <div>HELLO4</div>
-    <div>
-        <audio id="audioPlayer4" controls/>
-    </div>
+            <audio id="audioPlayer2" controls/>
+        </div>
+        <div>HELLO3</div>
+        <div>
+            <audio id="audioPlayer3" controls/>
+        </div>
+        <div>HELLO4</div>
+        <div>
+            <audio id="audioPlayer4" controls/>
+        </div>
+        <div>HELLO5</div>
+        <div>
+            <audio id="audioPlayer5" controls/>
+        </div>
     </div>
     <select id="genre">
-        <option value="rock80s">80s Rock</option>
+        <option value="seventiesDisco">Seventies Disco</option>
+        <option value="eightiesPop">Eighties Pop</option>
         <option value="classical">Classical</option>
     </select>
     <button id="begin">BEGIN</button>
@@ -63,11 +68,16 @@ $(document).ready(function() {
 
     var songs;
     var unAnsweredQuestions;
+    var message;
 
     $("#begin").on('click', function() {
-        if ($( "#genre option:selected" ).text() == "Classical") {
-          var message = {"text": "classical"};
-          alert("CLASSICAL CHOSEN");
+        if ($( "#genre option:selected" ).text() == "Seventies Disco") {
+          message = {"text": "seventiesDisco"};
+          alert("SEVENTIES DISCO CHOSEN");
+        }
+        else if ($( "#genre option:selected" ).text() == "Eighties Pop") {
+          message = {"text": "eightiesPop"};
+          alert("Eighties Pop CHOSEN");
             $.ajax({
               type: 'POST',
               url: server + "musicchoice",
@@ -81,6 +91,7 @@ $(document).ready(function() {
                 playAudio('audioPlayer2', songs[1]);
                 playAudio('audioPlayer3', songs[2]);
                 playAudio('audioPlayer4', songs[3]);
+                playAudio('audioPlayer5', songs[4]);
               
               }
             });
