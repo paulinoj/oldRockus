@@ -108,12 +108,10 @@
     </form>
     </div>
     <div id='timer'></div>
-    <div style="text-align:center;">    
-    <div>
-        <ul class='answers'>
-        </ul>
-    </div>    
-    </div>
+    <table class='answers'>
+      <col width="300">
+      <col width="80">
+    </table>    
 </body>
 <script>
 $(document).ready(function() {
@@ -206,7 +204,7 @@ $(document).ready(function() {
                         console.log("PLAYER:  " + player[songIndex]);
                         $(player[songIndex]).trigger('pause');                       
 
-                        $('.answers').append('<li>' + json + '  ' + points + '</li>');
+                        $('.answers').append('<tr><td>' + json + '</td><td>' + points + '</td></tr>');
                         unAnsweredQuestions--;
                     }
                     if (unAnsweredQuestions === 0) {
