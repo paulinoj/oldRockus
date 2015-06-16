@@ -9,11 +9,7 @@
         audio { 
            display:none;
         }
-
- /*       div {
-          background-color: black;
-        }
-*/
+        
         .masthead {
             font-size: 500%;
             font-style: italic;
@@ -190,7 +186,6 @@ $(document).ready(function() {
             data: JSON.stringify(message),
             contentType: 'application/json',
             success: function(json) {
-                    console.log(json);
                     if (json !== "") {
 
                         currentTime = new Date();
@@ -212,7 +207,6 @@ $(document).ready(function() {
                         }
                         totalScore = totalScore + points;
                         var songIndex = songList.indexOf(json);
-                        console.log("PLAYER:  " + player[songIndex]);
                         $(player[songIndex]).trigger('pause');                       
 
                         $('.answers').append('<tr><td>' + json + '</td><td>' + points + '</td></tr>');

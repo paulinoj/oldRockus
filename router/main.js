@@ -116,9 +116,6 @@ app.post('/musicchoice', function(req, res) {
     fuzzyDict.add(musicList[j]);
   }
 
-  console.log(fuzzyDict.get("Let's Grieve"));
-
-  console.log(musicList);
   res.end(JSON.stringify(songResponse));
 
 });
@@ -128,12 +125,9 @@ app.post('/guess', function(req, res) {
   var guess = req.body.text;
   var bestMatchIndex;
   var currentMatchIndex;
-  console.log("GUESS" + guess);
   var matchArr = fuzzyDict.get(guess);
   var matchValue = matchArr[0][0];
   var matchName = matchArr[0][1];
-  console.log("JOHN");
-  console.log(matchArr);
 
   var guessIndex = musicList.indexOf(matchName);
 
@@ -152,7 +146,6 @@ app.post('/guess', function(req, res) {
 
 
 app.post('/', function(req, res) {
-  console.log(req.body);
   if (req.body.text === "Password") {
     result = "Right";
   }
