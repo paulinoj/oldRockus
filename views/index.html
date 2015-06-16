@@ -78,6 +78,8 @@ $(document).ready(function() {
         else if ($( "#genre option:selected" ).text() == "Eighties Pop") {
           message = {"text": "eightiesPop"};
           alert("Eighties Pop CHOSEN");
+          
+        }
             $.ajax({
               type: 'POST',
               url: server + "musicchoice",
@@ -95,7 +97,6 @@ $(document).ready(function() {
               
               }
             });
-        }
 
     });
 
