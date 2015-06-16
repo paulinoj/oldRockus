@@ -6,9 +6,9 @@
     <title>ROCKUS</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
      <style>
-        audio { 
+/*        audio { 
            display:none;
-        }
+        }*/
 
  /*       div {
           background-color: black;
@@ -59,7 +59,11 @@
             height: 200px;
             font-size: 200px;
         }
+        .answers {
+            font-size: 40px;
+            font-family: Arial Black;
 
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="css/mystyles.css"/>
 </head>
@@ -67,22 +71,17 @@
 <body>
     <div class="masthead">Rockus</div>
     <div id="container">
-        <div>HELLO1</div>
         <div>
             <audio id="audioPlayer" controls/>
         </div>
-        <div>HELLO2</div>
             <audio id="audioPlayer2" controls/>
         </div>
-        <div>HELLO3</div>
         <div>
             <audio id="audioPlayer3" controls/>
         </div>
-        <div>HELLO4</div>
         <div>
             <audio id="audioPlayer4" controls/>
         </div>
-        <div>HELLO5</div>
         <div>
             <audio id="audioPlayer5" controls/>
         </div>
@@ -164,6 +163,7 @@ $(document).ready(function() {
     $("#send").submit(function(e) {
         e.preventDefault();
         var result = $('#message').val();
+        $('#message').val("");
         var message = {
             "text": result
         };
