@@ -20,6 +20,41 @@
             text-align: center;
             font-family: Arial Black;
         }
+        .menu {
+            width: 50%;
+            height: 80px;
+            font-size: 200%;
+            /*color: blue;*/
+            align: center;
+            font-family: Arial Black;
+        }
+
+/*.styled-select select {
+   background: transparent;
+   width: 268px;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 0;
+   border-radius: 0;
+   height: 34px;
+   -webkit-appearance: none;
+   }*/
+        button {
+            width: 50%;
+            height: 40px;
+            font-size: 200%;
+        }
+        #message {
+            width: 300px;
+            height: 40px;
+            font-size: 40px;
+        }
+        .submit {
+            width: 200px;
+            height: 200px;
+            font-size: 200px;
+        }
 
     </style>
     <link rel="stylesheet" type="text/css" href="css/mystyles.css"/>
@@ -48,11 +83,14 @@
             <audio id="audioPlayer5" controls/>
         </div>
     </div>
-    <select id="genre">
+    <span class="menu">Choose your genre:  </span>
+    <div class="styled-select">
+    <select id="genre" class="menu">
         <option value="seventiesDisco">Seventies Disco</option>
         <option value="eightiesPop">Eighties Pop</option>
         <option value="classical">Classical</option>
-    </select>
+    </select><br>
+    </div>
     <button id="begin">BEGIN</button>
     <div>
         <ul class='answers'>
@@ -72,6 +110,7 @@ $(document).ready(function() {
     var songList = [];
     var player = [];
     $("#begin").on('click', function() {
+        $(this).hide();
         if ($( "#genre option:selected" ).text() == "Seventies Disco") {
           message = {"text": "seventiesDisco"};
           alert("SEVENTIES DISCO CHOSEN");
