@@ -2,6 +2,10 @@ module.exports=function(app)
 {
 
 var bodyParser = require('body-parser');
+var FuzzySet = require('fuzzyset.js');
+
+var fuzzyDict = FuzzySet();
+
 
 var seventiesDisco = [
     {
@@ -108,6 +112,13 @@ app.post('/musicchoice', function(req, res) {
   for (var i = 0; i < songResponse.length; i++) {
     musicList.push(songResponse[i].realTitle);
   }
+
+  for (var j = 0; j < musicList.length; j++) {
+    fuzzyDict.add(musicList[j]);
+  }
+
+  console.log(fuzzyDict.get("Let's Grieve"));
+
   console.log(musicList);
   res.end(JSON.stringify(songResponse));
 
@@ -116,12 +127,18 @@ app.post('/musicchoice', function(req, res) {
 app.post('/guess', function(req, res) {
 
   var guess = req.body.text;
-  console.log(musicList);
-  console.log(guess);
-  var guessIndex = musicList.indexOf(guess);
-  console.log(guessIndex);
+  var bestMatchIndex;
+  var currentMatchIndex;
+  console.log("GUESS" + guess);
+  var matchArr = fuzzyDict.get(guess);
+  var matchValue = matchArr[0][0];
+  var matchName = matchArr[0][1];
+  console.log("JOHN");
+  console.log(matchArr);
 
-  if (guessIndex !== -1) {
+  var guessIndex = musicList.indexOf(matchName);
+
+  if ((matchValue > 0.8) && (guessIndex !== -1)) {
     response = musicList[guessIndex];
     musicList.splice(guessIndex, 1);
   }
