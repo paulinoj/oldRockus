@@ -6,19 +6,21 @@
     <title>ROCKUS</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
      <style>
- /*       audio { 
+        audio { 
            display:none;
         }
 
-        div {
+ /*       div {
           background-color: black;
         }
 */
         .masthead {
             font-size: 500%;
+            font-style: italic;
             color: blue;
             text-align: center;
             font-family: Arial Black;
+            background-color: black;
         }
         .menu {
             width: 50%;
@@ -44,6 +46,8 @@
             width: 50%;
             height: 40px;
             font-size: 200%;
+            background-color: yellow;
+            border-radius: 25px;
         }
         #message {
             width: 300px;
@@ -83,6 +87,7 @@
             <audio id="audioPlayer5" controls/>
         </div>
     </div>
+    <div style="text-align:center;">
     <span class="menu">Choose your genre:  </span>
     <div class="styled-select">
     <select id="genre" class="menu">
@@ -91,15 +96,24 @@
         <option value="classical">Classical</option>
     </select><br>
     </div>
-    <button id="begin">BEGIN</button>
-    <div>
-        <ul class='answers'>
-        </ul>
     </div>
+
+    <div style="text-align:center;">
+        <button id="begin">BEGIN</button>
+    </div>
+
+    <div style="text-align:center;">
     <form action="#" id="send" method="post">
         <input type="text" name="message" id="message" />
         <input type="submit" name="submit" class="submit" />
     </form>
+    </div>
+    <div style="text-align:center;">    
+    <div>
+        <ul class='answers'>
+        </ul>
+    </div>    
+    </div>
 </body>
 <script>
 $(document).ready(function() {
