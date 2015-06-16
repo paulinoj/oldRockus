@@ -17,7 +17,7 @@ var seventiesDisco = [
         realTitle: "Let's Groove",
         artist: '',
         start: 30,
-        volume: 0.4
+        volume: 0.5
     },
     {
         title: 'https://s3-us-west-1.amazonaws.com/mvpproject/Fly%2C+Robin+Fly+-+Silver+Convention.mp3',
@@ -39,7 +39,7 @@ var seventiesDisco = [
         realTitle: 'MacArthur Park',
         artist: '',
         start: 30,
-        volume: 0.6
+        volume: 0.7
     }
 
     ];
