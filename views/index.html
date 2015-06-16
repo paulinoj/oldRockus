@@ -60,7 +60,7 @@
             font-size: 200px;
         }
         .answers {
-            font-size: 40px;
+            font-size: 20px;
             font-family: Arial Black;
 
         }
@@ -107,6 +107,7 @@
         <input type="submit" name="submit" class="submit" />
     </form>
     </div>
+    <div id='timer'></div>
     <div style="text-align:center;">    
     <div>
         <ul class='answers'>
@@ -122,6 +123,12 @@ $(document).ready(function() {
     var message;
     var songList = [];
     var player = [];
+    var startTime;
+    var currentTime;
+    var points;
+    var totalScore = 0;
+    var elapsedTime;
+
     $("#begin").on('click', function() {
         $(this).hide();
         if ($( "#genre option:selected" ).text() == "Seventies Disco") {
@@ -133,6 +140,7 @@ $(document).ready(function() {
           alert("Eighties Pop CHOSEN");
 
         }
+        startTime = new Date();
             $.ajax({
               type: 'POST',
               url: server + "musicchoice",
@@ -176,11 +184,29 @@ $(document).ready(function() {
                     console.log(json);
                     if (json !== "") {
 
+                        currentTime = new Date();
+                        elapsedTime = currentTime - startTime;
+                        if (elapsedTime < 5000) {
+                            points = 20;
+                        }
+                        else if (elapsedTime < 10000)
+                        {
+                            points = 15;
+                        }
+                        else if (elapsedTime < 15000)
+                        {
+                            points = 10;
+                        }
+                        else if (elapsedTime < 20000)
+                        {
+                            points = 5;
+                        }
+                        totalScore = totalScore + points;
                         var songIndex = songList.indexOf(json);
                         console.log("PLAYER:  " + player[songIndex]);
                         $(player[songIndex]).trigger('pause');                       
 
-                        $('.answers').append('<li>' + json + '</li>');
+                        $('.answers').append('<li>' + json + '  ' + points + '</li>');
                         unAnsweredQuestions--;
                     }
                     if (unAnsweredQuestions === 0) {
@@ -202,6 +228,41 @@ $(document).ready(function() {
 
 
     var server = "http://127.0.0.1:3000/";
+
+
+
+
+
+
+
+var Timer;
+var TotalSeconds;
+
+
+function CreateTimer(TimerID, Time) {
+Timer = document.getElementById(TimerID);
+TotalSeconds = Time;
+
+UpdateTimer();
+window.setTimeout("Tick()", 1000);
+}
+
+function Tick() {
+    alert("Hello");
+TotalSeconds -= 1;
+UpdateTimer();
+//window.setTimeout("Tick()", 1000);
+}
+
+function UpdateTimer() {
+Timer.innerHTML = TotalSeconds;
+}
+
+
+
+CreateTimer('timer', 20);
+
+
 
 
 });
