@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>JSONParty</title>
+    <title>ROCKUS</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 
@@ -63,7 +63,6 @@ $(document).ready(function() {
               data: JSON.stringify(message),
               contentType: 'application/json',
               success: function(json) {
-                console.log(json);
                 songs = JSON.parse(json);
 
                 playAudio('audioPlayer', songs[0]);
@@ -95,10 +94,8 @@ $(document).ready(function() {
                         $('.answers').append('<li>' + json + '</li>');
                     }
                 }
-                // , complete: function(){
-                //   app.stopSpinner();
-                // }
         });
+
     });
 
     var playAudio = function(player, songObject) {

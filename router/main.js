@@ -33,29 +33,35 @@ var bodyParser = require('body-parser');
 var classicalSongs = [
     {
         title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/04+One+In+A+Million.mp3',
+        realTitle: 'Dancing Queens',
         artist: '',
         start: 30,
         volume: 0.4
     },
     {
         title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/03+Age+Ain%27t+Nothing+But+A+Number.mp3',
+        realTitle: 'Born To Run',
         artist: '',
         start: 30,
         volume: 0.4
     },
     {
         title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/05+Hot+Like+Fire.mp3',
+        realTitle: 'Karma Chameleon',
         artist: '',
         start: 30,
         volume: 0.4
     },
     {
         title: 'https://s3-us-west-1.amazonaws.com/hr-mytunes/data/06+If+Your+Girl+Only+Knew.mp3',
+        realTitle: 'Xanadu',
         artist: '',
         start: 30,
         volume: 0.4
     }];
 
+var musicList = [];
+var songResponse;
 
 app.use(bodyParser());
 
@@ -66,12 +72,19 @@ res.render('index.html');
 app.post('/musicchoice', function(req, res) {
   console.log(req.body);
   if (req.body.text === "classical") {
-    res.end(JSON.stringify(classicalSongs));
+    songResponse = classicalSongs;
   }
   else
   {
-    res.end(JSON.stringify(eightiesSongs));
+    songResponse = eightiesSongs;
   }
+
+  for (var i = 0; i < songResponse.length; i++) {
+    musicList.push(songResponse[i].realTitle);
+  }
+  console.log(musicList);
+  res.end(JSON.stringify(songResponse));
+
 });
 
 app.post('/', function(req, res) {
@@ -86,8 +99,4 @@ app.post('/', function(req, res) {
   res.end(result);
 });
 
-
-// app.get('/about',function(req,res){
-// res.render('about.html');
-// });
 };
