@@ -6,9 +6,9 @@
     <title>ROCKUS</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
      <style>
-/*        audio { 
+        audio { 
            display:none;
-        }*/
+        }
 
  /*       div {
           background-color: black;
@@ -24,24 +24,17 @@
         }
         .menu {
             width: 50%;
-            height: 80px;
+            height: 60px;
             font-size: 200%;
             /*color: blue;*/
             align: center;
             font-family: Arial Black;
         }
 
-/*.styled-select select {
-   background: transparent;
-   width: 268px;
-   padding: 5px;
-   font-size: 16px;
-   line-height: 1;
-   border: 0;
-   border-radius: 0;
-   height: 34px;
-   -webkit-appearance: none;
-   }*/
+        select {
+           background-color: white;
+           width: 268px;
+       }
         button {
             width: 50%;
             height: 40px;
@@ -50,20 +43,30 @@
             border-radius: 25px;
         }
         #message {
-            width: 300px;
+            width: 50%;
             height: 40px;
-            font-size: 40px;
+            font-size: 30px;
+            display: none;
         }
         .submit {
             width: 200px;
-            height: 200px;
-            font-size: 200px;
+            height: 30px;
+            font-size: 20px;
+            background-color: gray;
+            display: none;
         }
         .answers {
             font-size: 20px;
             font-family: Arial Black;
 
         }
+        .selectedGenre {
+            font-size: 30px;
+            font-family: Arial Black; 
+            display: none;
+
+        }
+
     </style>
     <link rel="stylesheet" type="text/css" href="css/mystyles.css"/>
 </head>
@@ -94,8 +97,9 @@
         <option value="eightiesPop">Eighties Pop</option>
         <option value="classical">Classical</option>
     </select><br>
+    <div class="selectedGenre"></div>
     </div>
-    </div>
+    </div><br>
 
     <div style="text-align:center;">
         <button id="begin">BEGIN</button>
@@ -103,7 +107,7 @@
 
     <div style="text-align:center;">
     <form action="#" id="send" method="post">
-        <input type="text" name="message" id="message" />
+        <input type="text" name="message" id="message" /><br><br>
         <input type="submit" name="submit" class="submit" />
     </form>
     </div>
@@ -129,8 +133,14 @@ $(document).ready(function() {
 
     $("#begin").on('click', function() {
         $(this).hide();
+        $('.menu').hide();
+        $('#message').show();
+        $('.submit').show();
+
         if ($( "#genre option:selected" ).text() == "Seventies Disco") {
           message = {"text": "seventiesDisco"};
+          $('.selectedGenre').text("Genre:  " + $( "#genre option:selected" ).text());
+          $('.selectedGenre').show();
           alert("SEVENTIES DISCO CHOSEN");
         }
         else if ($( "#genre option:selected" ).text() == "Eighties Pop") {
@@ -195,7 +205,7 @@ $(document).ready(function() {
                         {
                             points = 10;
                         }
-                        else if (elapsedTime < 20000)
+                        else
                         {
                             points = 5;
                         }
@@ -208,6 +218,8 @@ $(document).ready(function() {
                         unAnsweredQuestions--;
                     }
                     if (unAnsweredQuestions === 0) {
+                        $('.answers').append('<tr><td>TOTAL SCORE:</td><td>' + totalScore + '</td></tr>');
+
                         console.log("CONGRATULATIONS");
                     }
                 }
@@ -216,7 +228,6 @@ $(document).ready(function() {
     });
 
     var playAudio = function(player, songObject) {
-        console.log("Do we get here");
         player = '#' + player;
         $(player).attr('src', songObject.title);
         $(player).prop('currentTime', songObject.start);
