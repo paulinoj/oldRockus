@@ -100,7 +100,6 @@ res.render('index.html');
 });
 
 app.post('/musicchoice', function(req, res) {
-  console.log(req.body);
   if (req.body.text === "seventiesDisco") {
     songResponse = seventiesDisco;
   }
