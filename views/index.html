@@ -9,11 +9,11 @@
  /*       audio { 
            display:none;
         }
-*/
+
         div {
           background-color: black;
         }
-
+*/
         .masthead {
             font-size: 500%;
             color: blue;
@@ -69,7 +69,8 @@ $(document).ready(function() {
     var songs;
     var unAnsweredQuestions;
     var message;
-
+    var songList = [];
+    var player = [];
     $("#begin").on('click', function() {
         if ($( "#genre option:selected" ).text() == "Seventies Disco") {
           message = {"text": "seventiesDisco"};
@@ -78,7 +79,7 @@ $(document).ready(function() {
         else if ($( "#genre option:selected" ).text() == "Eighties Pop") {
           message = {"text": "eightiesPop"};
           alert("Eighties Pop CHOSEN");
-          
+
         }
             $.ajax({
               type: 'POST',
@@ -88,6 +89,13 @@ $(document).ready(function() {
               success: function(json) {
                 songs = JSON.parse(json);
                 unAnsweredQuestions = songs.length;
+
+                for (var i = 0; i < songs.length; i++) {
+                  songList.push(songs[i].realTitle);
+                }
+
+
+                player = ["#audioPlayer", "#audioPlayer2", "#audioPlayer3", "#audioPlayer4", "#audioPlayer5"];
 
                 playAudio('audioPlayer', songs[0]);
                 playAudio('audioPlayer2', songs[1]);
@@ -114,6 +122,10 @@ $(document).ready(function() {
             success: function(json) {
                     console.log(json);
                     if (json !== "") {
+
+                        var songIndex = songList.indexOf(json);
+                        console.log("PLAYER:  " + player[songIndex]);
+                        $(player[songIndex]).trigger('pause');                       
 
                         $('.answers').append('<li>' + json + '</li>');
                         unAnsweredQuestions--;
